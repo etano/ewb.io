@@ -1,0 +1,78 @@
+#about.module.middle
+  .leftguy
+    .content.title
+      &nbsp;
+  .rightguy
+    .content
+      h3
+        a(href='https://plus.google.com/108508864811676828361/posts') My name is Ethan Brown.
+      p
+        span.mailme etano foo etano bar net
+        span.tag or something.
+#ephemera.module.middle
+  .leftguy
+    .content
+      h2
+        a(href='#ephemera') ephemera
+  .rightguy
+    .content
+      #lifestream
+#you.module.middle
+  .leftguy
+    .content
+      h2
+        a(href='#you') you
+  .rightguy
+    .content
+      #browserinfo
+//
+  #exit.module.middle
+    .leftguy
+      .content
+        h2
+          a(href='#exit')
+    .linkcol
+      .content
+        h3
+          a(href='#work') still
+        p
+          a(href='http://google.com/reader/shared/Ethan.W.Brown') Google Reader
+          br
+          a(href='http://arxiv.org') arXiv.org
+          br
+          a(href='http://physics.illinois.edu/') UIUC Physics
+    .linkcol
+      .content
+        h3
+          a(href='#play') playin'
+        p
+          a(href='http://github.com/etano') Github
+          br
+          a(href='http://reddit.com/user/etano') Reddit
+          br
+          a(href='http://twitter.com/!#/ethanwbrown') Twitter
+          br
+          a(href='http://last.fm/user/etano') last.fm
+    .linkcol
+      .content
+        h3
+          a(href='#internet') games.
+        p
+          a(href='http://games.asobrain.com/pages/profile.php?user=efang') Catan
+          br
+          a(href='http://gameknot.com/stats.pl?efang') Chess
+
+script(type="text/javascript")
+  $.getJSON("http://jsonip.appspot.com?callback=?",
+    function(data){
+      ip = data.ip;
+      txt= "<h3>have the ip address <a href='#'>" + ip + "</a>.</h3>";
+      txt+= "<h3>are located in <a href='#'>" + geoplugin_city() + ", " + geoplugin_region() + ", " + geoplugin_countryCode() + "</a>.</h3>";
+      txt+= "<h3>are using <a href='#'>" + navigator.appVersion + "</a> browser on your <a href='#'>" + navigator.platform + "</a>.</h3>";
+      document.getElementById("browserinfo").innerHTML=txt;
+    });
+
+script(src='/javascripts/jquery.emailhide.js', type='text/javascript', charset='utf-8')
+script(src='/javascripts/jquery-lifestream/jquery.lifestream.js', type='text/javascript', charset='utf-8')
+script(src='/javascripts/jquery-timeago/jquery.timeago.js', type='text/javascript', charset='utf-8')
+script(type='text/javascript', src='/javascripts/lifestream.js')
