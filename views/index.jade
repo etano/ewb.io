@@ -13,15 +13,19 @@
   .leftguy
     .content
       h2
-        a(href='#ephemera') ephemera
+        a(href='#ephemera') Ephemera
   .rightguy
     .content
       #lifestream
+      p
+        a(href='#footer', onClick="LSPlus()") +
+        &emsp;/&emsp;
+        a(href='#footer', onClick="LSMinus()") -
 .module#eterna
   .leftguy
     .content
       h2
-        a(href='#eterna') eterna
+        a(href='#eterna') Eterna
   .rightguy
     .content
         p
@@ -35,7 +39,7 @@
           &emsp;&emsp;
           a(href='http://twitter.com/ethanwbrown') Twitter
           &emsp;&emsp;
-          a(href='http://last.fm/user/etano') last.fm
+          a(href='http://last.fm/user/etano') Last.fm
 //
   #you.module.middle
     .leftguy
@@ -56,8 +60,9 @@
         document.getElementById("browserinfo").innerHTML=txt;
       });
 
+
 script(src='/javascripts/colorgrad.min.js', type='text/javascript', charset='utf-8')
 script(src='/javascripts/jquery.emailhide.min.js', type='text/javascript', charset='utf-8')
 script(src='/javascripts/jquery-lifestream/jquery.lifestream.min.js', type='text/javascript', charset='utf-8')
 script(src='/javascripts/jquery-timeago/jquery.timeago.min.js', type='text/javascript', charset='utf-8')
-script(type='text/javascript', src='/javascripts/lifestream.min.js')
+script(src='/javascripts/lifestream.min.js', type='text/javascript', charset='utf-8')

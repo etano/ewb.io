@@ -2,9 +2,12 @@ body{
   margin: 0 auto 0 auto;
   padding: 0 auto;
   color: #777;
-  font-size: 11px;
+  font-size: 16px;
+  line-height: 24px;
   background: #fff;
   width: 100%;
+  font-family: Arial;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
 }
 
 /* Basic typesetting */
@@ -12,28 +15,22 @@ body{
 h1{
   margin: 0 0 15px 0;
   padding: 0;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: normal;
-  line-height: 20px;
-  font-family: Arial, sans-serif;
 }
 
 h2{
   padding: 0 2em 0 0;
   margin: 0;
   font-weight: normal;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 16px;
   color: #ccc;
-  font-family: Verdana, sans-serif;
   text-align: right;
 }
 
 p{
   margin: 0 0 15px 0;
   padding: 0;
-  line-height: 20px;
-  font-family: Verdana, sans-serif;
 }
 
 #footer p{
@@ -69,7 +66,7 @@ h2 a:hover {
 /* Specific typesetting */
 
 .date{
-  margin-right: 0em;
+  margin: 0em;
   font-weight: normal;
 }
 
@@ -112,7 +109,7 @@ code{
 }
 
 .leftguy{
-  width: 12.5%;
+  width: 120px;
   margin: 0;
   padding: 0;
   float: left;
@@ -120,7 +117,7 @@ code{
 }
 
 .rightguy{
-  width: 87.5%;
+  width: 600px;
   margin: 0;
   padding: 0;
   float: left;
@@ -168,10 +165,7 @@ code{
 #lifestream li {
   margin: 0 0 15px 0;
   padding: 0;
-  line-height: 20px;
-  font-size: 12px;
   color: #777;
-  font-family: Arial, sans-serif;
 }
 
 #lifestream li a {

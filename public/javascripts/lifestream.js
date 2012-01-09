@@ -1,5 +1,5 @@
-(function() {
-    var a = 0, b = [ {
+function loadLifeStream(lim) {
+    var b = [ {
         service: "github",
         user: "etano"
     }, {
@@ -27,14 +27,64 @@
         a = a ? a : new Date;
         var c = a.getTimezoneOffset();
         return b(a.getFullYear(), 4) + "-" + b(a.getMonth() + 1, 2) + "-" + b(a.getDate(), 2) + "T" + b(a.getHours(), 2) + ":" + b(a.getMinutes(), 2) + ":" + b(a.getUTCSeconds(), 2) + (c > 0 ? "-" : "+") + b(Math.floor(Math.abs(c) / 60), 2) + ":" + b(Math.abs(c) % 60, 2);
-    }, $("#lifestream").lifestream({
-        limit: 10,
+    };
+    $("#lifestream").lifestream({
+        limit: lim,
         list: b,
         feedloaded: function() {
-            a++, a === b.length && ($("#lifestream li").each(function() {
+            var i = 0;
+            $("#lifestream li").each(function(i) {
                 var a = $(this);
                 date = new Date(a.data("time")), url = a.data("url"), name = a.data("name"), a.append('<span class="via"><a href="' + url + '">' + name + "</a></span>" + '<span class="date timeago" title="' + date.toISO8601(date) + '">' + date + "</span>");
-            }), $("#lifestream .timeago").timeago());
+                if (i > LSInit-1) {
+                  a.hide();
+                } else {
+                  a.show();
+                };
+                i++;
+            });
+            $("#lifestream .timeago").timeago();
+            updateColors();
         }
     });
+
+};
+
+function LSPlus() {
+  var i = 0;
+  $("#lifestream li").each(function(i) {
+    if (i === LSIter + LSShown) {
+      return false;
+    };
+    $(this).fadeIn('slow');
+    i++;
+  });
+  if (LSShown < $("#lifestream li").length) {
+    LSShown = LSShown + LSIter;
+  };
+};
+
+function LSMinus() {
+  var i = 0;
+  $("#lifestream li").each(function(i) {
+    if (i === LSShown || LSShown < LSIter) {
+      return false;
+    };
+    if (i > LSShown - LSIter - 1) {
+      $(this).fadeOut('slow');
+    };
+    i++;
+  });
+  if (LSShown >= LSIter) {
+    LSShown = LSShown - LSIter;
+  };
+};
+
+(function() {
+  LSInit = 10;
+  LSIter = 5;
+  loadLifeStream(1000);
+  LSShown = LSInit;
 })();
+
+
