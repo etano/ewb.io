@@ -3,9 +3,6 @@ function loadLifeStream(lim) {
         service: "github",
         user: "etano"
     }, {
-        service: "googlereader",
-        user: "12090471747753652738"
-    }, {
         service: "twitter",
         user: "ethanwbrown"
     }, {
