@@ -78,7 +78,7 @@ function LSMinus() {
 };
 
 (function() {
-  LSInit = 10;
+  LSInit = 5;
   LSIter = 5;
   loadLifeStream(1000);
   LSShown = LSInit;
