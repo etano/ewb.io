@@ -10,7 +10,7 @@ function loadLifeStream(lim) {
         user: "etano"
     }, {
         service: "tumblr",
-        user: "ethanwbrown"
+        user: "ohgreatthatsreallywonderful"
     }, {
         service: "zotero",
         user: "820015"
@@ -78,8 +78,8 @@ function LSMinus() {
 };
 
 (function() {
-  LSInit = 5;
-  LSIter = 5;
+  LSInit = 3;
+  LSIter = 3;
   loadLifeStream(1000);
   LSShown = LSInit;
 })();
