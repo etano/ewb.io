@@ -32,7 +32,7 @@ function loadLifeStream(lim) {
             var i = 0;
             $("#lifestream li").each(function(i) {
                 var a = $(this);
-                date = new Date(a.data("time")), url = a.data("url"), name = a.data("name"), a.append('<span class="via"><a href="' + url + '">' + name + "</a></span>" + '<span class="date timeago" title="' + date.toISO8601(date) + '">' + date + "</span>");
+                date = new Date(a.data("time")), url = a.data("url"), name = a.data("name"), a.append('<span class="via"><a href="' + url + '">' + name + '</a></span>' + '<span class="date timeago" title="' + date.toISO8601(date) + '">' + date + '</span>');
                 if (i > LSInit-1) {
                   a.hide();
                 } else {
@@ -78,8 +78,8 @@ function LSMinus() {
 };
 
 (function() {
-  LSInit = 3;
-  LSIter = 3;
+  LSInit = 0;
+  LSIter = 5;
   loadLifeStream(1000);
   LSShown = LSInit;
 })();
