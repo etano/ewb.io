@@ -12,9 +12,13 @@ function loadLifeStream(lim) {
         service: "tumblr",
         user: "ohgreatthatsreallywonderful"
     }, {
-        service: "zotero",
-        user: "820015"
+        service: "mendeley",
+        user: "2855521/ethan-brown",
     } ];
+//        service: "zotero",
+//        user: "820015"
+//    }, {
+
     Date.prototype.toISO8601 = function(a) {
         var b = function(a, b) {
             var c = "";
@@ -78,7 +82,7 @@ function LSMinus() {
 };
 
 (function() {
-  LSInit = 0;
+  LSInit = 5;
   LSIter = 5;
   loadLifeStream(1000);
   LSShown = LSInit;
