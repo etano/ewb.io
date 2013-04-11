@@ -6,12 +6,18 @@ function loadLifeStream(lim) {
         service: "twitter",
         user: "ethanwbrown"
     }, {
-        service: "lastfm",
-        user: "etano"
-    }, {
-        service: "tumblr",
-        user: "ohgreatthatsreallywonderful"
-    }, {
+        service: "bitbucket",
+        user: "efang"
+    },
+    //{
+    //    service: "lastfm",
+    //    user: "etano"
+    //},
+    // {
+    //    service: "tumblr",
+    //    user: "ohgreatthatsreallywonderful"
+    //},
+      {
         service: "mendeley",
         user: "2855521/ethan-brown",
     } ];
