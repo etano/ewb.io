@@ -8,7 +8,10 @@ function loadLifeStream(lim) {
     }, {
         service: "bitbucket",
         user: "efang"
-    },
+    }, {
+        service: "pocket",
+        user: "efang"
+    //},
     //{
     //    service: "lastfm",
     //    user: "etano"
@@ -17,9 +20,9 @@ function loadLifeStream(lim) {
     //    service: "tumblr",
     //    user: "ohgreatthatsreallywonderful"
     //},
-      {
-        service: "mendeley",
-        user: "2855521/ethan-brown",
+    //  {
+    //    service: "mendeley",
+    //    user: "2855521/ethan-brown",
     } ];
 //        service: "zotero",
 //        user: "820015"
@@ -88,7 +91,7 @@ function LSMinus() {
 };
 
 (function() {
-  LSInit = 5;
+  LSInit = 1;
   LSIter = 5;
   loadLifeStream(1000);
   LSShown = LSInit;
