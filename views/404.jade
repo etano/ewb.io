@@ -15,16 +15,4 @@
     .content
       #browserinfo
 
-script(type="text/javascript")
-  $.getJSON("http://jsonip.appspot.com?callback=?",
-    function(data){
-      ip = data.ip;
-      txt = "<p><a href='#'>" + ip + "</a>.</p>";
-      txt += "<p><a href='#'>" + geoplugin_city() + ", " + geoplugin_region() + ", " + geoplugin_countryCode() + "</a>.</p>";
-      txt += "<p><a href='#'>" + navigator.appVersion + "</a>, <a href='#'>" + navigator.platform + "</a>.</p>";
-      document.getElementById("browserinfo").innerHTML=txt;
-  });
 
-
-script(src='/javascripts/colorgrad.js', type='text/javascript', charset='utf-8')
-script(src='/javascripts/jquery.emailhide.min.js', type='text/javascript', charset='utf-8')

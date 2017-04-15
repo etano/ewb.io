@@ -19,7 +19,6 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
   app.use(function(req, res, next){
     res.status(404);
 
@@ -51,14 +50,11 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Use
-
-
 // Routes
 
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'Ethan W. Brown :: etano.net',
+    title: 'Ethan W. Brown : ewb.io',
   });
 });
 

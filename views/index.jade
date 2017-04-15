@@ -5,11 +5,7 @@
   .rightguy
     .content
       h1
-        \I am 
-        a(href='http://scholar.google.ch/citations?user=sXEThvMAAAAJ&hl=en') Ethan W. Brown
-        .
-      p
-        span Computational physicist
+        | Ethan W. Brown
 .module#ephemera
   .leftguy
     .content
@@ -34,31 +30,8 @@
           &emsp;&emsp;
           a(href='http://www.linkedin.com/pub/ethan-brown/45/a09/435') LinkedIn
           &emsp;&emsp;
+          a(href='http://scholar.google.ch/citations?user=sXEThvMAAAAJ&hl=en') Scholar
+          &emsp;&emsp;
           a(href='http://twitter.com/ethanwbrown') Twitter
-
-//
-  #you.module.middle
-    .leftguy
-      .content
-        h2
-          a(href='#you', target='_self') you
-    .rightguy
-      .content
-        #browserinfo
-  
-  script(type="text/javascript")
-    $.getJSON("http://jsonip.appspot.com?callback=?",
-      function(data){
-        ip = data.ip;
-        txt= "<h3>have the ip address <a href='#'>" + ip + "</a>.</h3>";
-        txt+= "<h3>are located in <a href='#'>" + geoplugin_city() + ", " + geoplugin_region() + ", " + geoplugin_countryCode() + "</a>.</h3>";
-        txt+= "<h3>are using <a href='#'>" + navigator.appVersion + "</a> browser on your <a href='#'>" + navigator.platform + "</a>.</h3>";
-        document.getElementById("browserinfo").innerHTML=txt;
-      });
-
-
-script(src='/javascripts/colorgrad.js', type='text/javascript', charset='utf-8')
-script(src='/javascripts/jquery.emailhide.min.js', type='text/javascript', charset='utf-8')
-script(src='/javascripts/jquery-lifestream/jquery.lifestream.min.js', type='text/javascript', charset='utf-8')
-script(src='/javascripts/jquery-timeago/jquery.timeago.min.js', type='text/javascript', charset='utf-8')
-script(src='/javascripts/lifestream.js', type='text/javascript', charset='utf-8')
+          &emsp;&emsp;
+          a(href='http://keybase.io/ebrown') PGP

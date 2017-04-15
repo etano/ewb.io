@@ -11,22 +11,7 @@ function loadLifeStream(lim) {
     }, {
         service: "pocket",
         user: "efang"
-    //},
-    //{
-    //    service: "lastfm",
-    //    user: "etano"
-    //},
-    // {
-    //    service: "tumblr",
-    //    user: "ohgreatthatsreallywonderful"
-    //},
-    //  {
-    //    service: "mendeley",
-    //    user: "2855521/ethan-brown",
     } ];
-//        service: "zotero",
-//        user: "820015"
-//    }, {
 
     Date.prototype.toISO8601 = function(a) {
         var b = function(a, b) {

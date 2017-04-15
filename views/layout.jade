@@ -1,12 +1,10 @@
-!!! 5
+doctype html
 html(lang="en")
   head
     title= title
     link(rel='shortcut icon', type='image/x-icon', href='/javascripts/jquery-lifestream/images/favicon.ico')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='/javascripts/jquery/dist/jquery.min.js')
-    script(language="JavaScript", src="http://www.geoplugin.net/javascript.gp", type="text/javascript")
-    script(type='text/javascript')
+    link(rel='stylesheet', href='/stylesheets/style.min.css')
+    script(type='text/javascript').
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-414860-1']);
       _gaq.push(['_trackPageview']);
@@ -15,6 +13,7 @@ html(lang="en")
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+    meta(name="viewport", content="width=device-width, initial-scale=1")
   base(target="_top")
   body
     #wrapper

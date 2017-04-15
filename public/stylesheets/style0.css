@@ -1,7 +1,0 @@
-a:link, a:visited, a:hover, a:active, #lifestream li span a {
-  color: #0074E8;
-}
-
-.middle:hover h2 a, h2 a:hover, .date, .name:hover {
-  color: #E87400;
-}
