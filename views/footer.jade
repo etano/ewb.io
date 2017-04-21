@@ -23,9 +23,9 @@ script(type="text/javascript").
      };
      head.appendChild(script);
    }
-   getScript('/javascripts/jquery/dist/jquery.min.js',function() {
-     getScript('/javascripts/jquery-lifestream/jquery.lifestream.min.js',function() {
-       getScript('/javascripts/jquery-timeago/jquery.timeago.min.js',function() {
+   getScript('/javascripts/jquery.min.js',function() {
+     getScript('/javascripts/jquery.lifestream.min.js',function() {
+       getScript('/javascripts/jquery.timeago.min.js',function() {
          getScript('/javascripts/lifestream.min.js',noop);
        });
      });
