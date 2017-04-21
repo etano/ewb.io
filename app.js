@@ -38,7 +38,8 @@ app.configure(function(){
     }
 
     // default to plain-text. send()
-    res.type('txt').send('Not found');
+    res.set('Content-Type', 'text/plain').send('Not found');
+    return;
   });
 });
 
