@@ -25,7 +25,7 @@
       ref  : "origin/master",
       repo : "git@github.com:etano/ewb.io.git",
       path : "/var/www/ewb.io",
-      "post-deploy" : "npm install --production && cp nginx.conf /etc/nginx/sites-available/default && service nginx restart && pm2 startOrRestart ecosystem.json --env production",
+      "post-deploy" : "npm install --production && mkdir -p log && cp nginx.conf /etc/nginx/sites-available/default && service nginx restart && pm2 startOrRestart ecosystem.json --env production",
       env : {
         NODE_ENV: "production"
       }
