@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   color: #aaa;
@@ -6,19 +6,19 @@ body{
   line-height: 24px;
   background: #fff;
   width: 100%;
-  font-family: "Bookman Old Style", "URW Bookman L", Georgia, serif;
+  font-family: Monaco, Courier New, serif;
 }
 
 /* Basic typesetting */
 
-h1{
+h1 {
   margin: 0 0 15px 0;
   padding: 0;
   font-size: 14px;
   font-weight: normal;
 }
 
-h2{
+h2 {
   padding: 0 2em 0 0;
   margin: 0;
   font-weight: normal;
@@ -26,7 +26,7 @@ h2{
   text-align: right;
 }
 
-p{
+p {
   margin: 0 0 15px 0;
   padding: 0;
 }
@@ -59,7 +59,7 @@ h2 a:hover {
 
 /* Specific typesetting */
 
-.date{
+.date {
   margin: 0em;
   color: #aaa;
   font-weight: normal;
@@ -70,7 +70,7 @@ abbr, acronym, span.abbr {
   border-bottom: 1px dotted #aaa;
 }
 
-code{
+code {
   padding: 10px;
   background: #EFEFEF;
   color: #666;
@@ -85,27 +85,27 @@ code{
 
 /* Basic Structures */
 
-#wrapper{
+#wrapper {
   width: 100%;
   padding: 0;
   margin: 0;
 }
 
-#main{
+#main {
   margin: 30px auto;
   padding: 45px 0;
   background: #FFFFFF;
   width: 80%;
 }
 
-.module{
+.module {
   width: 100%;
   margin: 0 0 15px 0;
   padding: 0;
   display: table;
 }
 
-.leftguy{
+.leftguy {
   width: 30%;
   margin: 0;
   padding: 0;
@@ -113,7 +113,7 @@ code{
   display: block;
 }
 
-.rightguy{
+.rightguy {
   width: 70%;
   margin: 0;
   padding: 0;
@@ -121,12 +121,12 @@ code{
   display: block;
 }
 
-.content{
+.content {
   margin: 0;
   padding: 0;
 }
 
-.colorbox{
+.colorbox {
   position: fixed;
   float: right;
   display: table;
