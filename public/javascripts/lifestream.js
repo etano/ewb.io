@@ -1,85 +1,218 @@
-function loadLifeStream(lim) {
-    var b = [ {
-        service: "github",
-        user: "etano"
-    }, {
-        service: "twitter",
-        user: "ethanwbrown"
-    }, {
-        service: "bitbucket",
-        user: "efang"
-    }, {
-        service: "pocket",
-        user: "efang"
-    } ];
+function call_rest(url, callback) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.addEventListener('load', callback);
+  xhttp.addEventListener('error', () => console.log("Request to "+url+" failed"));
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
 
-    Date.prototype.toISO8601 = function(a) {
-        var b = function(a, b) {
-            var c = "";
-            while (c.length < b - 1 && a < Math.pow(10, b - c.length - 1)) c += "0";
-            return c + a.toString();
-        };
-        a = a ? a : new Date;
-        var c = a.getTimezoneOffset();
-        return b(a.getFullYear(), 4) + "-" + b(a.getMonth() + 1, 2) + "-" + b(a.getDate(), 2) + "T" + b(a.getHours(), 2) + ":" + b(a.getMinutes(), 2) + ":" + b(a.getUTCSeconds(), 2) + (c > 0 ? "-" : "+") + b(Math.floor(Math.abs(c) / 60), 2) + ":" + b(Math.abs(c) % 60, 2);
-    };
-    $("#lifestream").lifestream({
-        limit: lim,
-        list: b,
-        feedloaded: function() {
-            var i = 0;
-            $("#lifestream li").each(function(i) {
-                var a = $(this);
-                date = new Date(a.data("time")), url = a.data("url"), name = a.data("name"), a.append('<span class="via"><a href="' + url + '">' + name + '</a></span>' + '<span class="date timeago" title="' + date.toISO8601(date) + '">' + date + '</span>');
-                if (i > LSInit-1) {
-                  a.hide();
-                } else {
-                  a.show();
-                };
-                i++;
-            });
-            $("#lifestream .timeago").timeago();
-            updateColors();
-        }
+function get_entries(feed, callback) {
+  call_rest(feed.url, function() {
+    callback(feed.parser(JSON.parse(this.responseText)));
+  });
+}
+
+var parse_pocket = function(res) {
+  var entries = [];
+  res.query.results.rss.channel.item.forEach(function(entry) {
+    var a = document.createElement("a");
+    a.setAttribute("href", entry.link);
+    a.textContent = entry.title;
+    entries.push({
+      name: "pocket",
+      date: new Date(entry.pubDate),
+      html: "read "+a.outerHTML,
+      url: "https://getpocket.com/@efang"
     });
-
-};
-
-function LSPlus() {
-  var i = 0;
-  $("#lifestream li").each(function(i) {
-    if (i === LSIter + LSShown) {
-      return false;
-    };
-    $(this).fadeIn('slow');
-    i++;
   });
-  if (LSShown < $("#lifestream li").length) {
-    LSShown = LSShown + LSIter;
-  };
-};
+  return entries;
+}
 
-function LSMinus() {
-  var i = 0;
-  $("#lifestream li").each(function(i) {
-    if (i === LSShown || LSShown < LSIter) {
-      return false;
-    };
-    if (i > LSShown - LSIter - 1) {
-      $(this).fadeOut('slow');
-    };
-    i++;
+function get_link(href, text) {
+  a = document.createElement("a");
+  a.setAttribute("href", href);
+  a.textContent = text;
+  return a.outerHTML;
+}
+
+function get_repo_url(entry) {
+  return 'https://github.com/' + entry.repo.name;
+}
+
+function get_repo_link(entry) {
+  return get_link(get_repo_url(entry), entry.repo.name);
+}
+
+var parse_github = function(res) {
+  var entries = [];
+  res.forEach(function(entry) {
+    console.log("hi");
+    console.log(entry);
+    var html = ""
+    if (entry.type === 'CommitCommentEvent' ) {
+      html = 'commented on ' + get_repo_link(entry);
+    } else if (entry.type === 'CreateEvent' && entry.payload.ref_type === 'branch') {
+      html = 'created branch ' + get_link(get_repo_url(entry)+'/tree/'+entry.payload.ref, entry.payload.ref) + ' at ' + get_repo_link(entry);
+    } else if (entry.type === 'CreateEvent' && entry.payload.ref_type === 'repository') {
+      html = 'created repository ' + get_repo_link(entry);
+    } else if (entry.type === 'CreateEvent' && entry.payload.ref_type === 'tag') {
+      html = 'created tag ' + get_link(get_repo_url(entry)+'/tree/'+entry.payload.ref, entry.payload.ref) + ' at ' + get_repo_link(entry);
+    } else if (entry.type === 'DeleteEvent' && entry.payload.ref_type === 'branch') {
+      html = 'deleted branch ' + entry.payload.ref + ' at ' + get_repo_link(entry);
+    } else if (entry.type === 'DeleteEvent' && entry.payload.ref_type === 'tag') {
+      html = 'deleted tag ' + entry.payload.ref + ' at ' + get_repo_link(entry);
+    } else if (entry.type === 'FollowEvent' ) {
+      html = 'started following ' + get_link('https://github.com/'+entry.payload.target.login, entry.payload.target.login);
+    } else if (entry.type === 'ForkEvent' ) {
+      html = 'forked ' + get_repo_link(entry);
+    } else if (entry.type === 'GistEvent' ) {
+      if (entry.payload.action === 'create') {
+        entry.payload.action = 'created';
+      } else if (entry.payload.action === 'update') {
+        entry.payload.action = 'updated';
+      }
+      html = entry.payload.action + ' gist ' + get_link('https://gist.github.com/'+entry.payload.gist.id, entry.payload.gist.id);
+    } else if (entry.type === 'IssueCommentEvent' ) {
+      html = 'commented on issue ' + get_link(get_repo_url(entry)+'/issues/'+entry.payload.issue.number, entry.payload.issue.number) +
+             ' on ' + get_repo_link(entry);
+    } else if (entry.type === 'IssuesEvent' ) {
+      html = entry.payload.action + ' issue ' + get_link(get_repo_url(entry)+'/issues/'+entry.payload.issue.number, entry.payload.issue.number) +
+             ' on ' + get_repo_link(entry);
+    } else if (entry.type === 'PullRequestEvent' ) {
+      html = entry.payload.action + ' pull request ' + get_link(get_repo_url(entry)+'/pull/'+entry.payload.number, entry.payload.number) +
+             ' on ' + get_repo_link(entry);
+    } else if (entry.type === 'PushEvent' ) {
+      entry.payload.ref = entry.payload.ref.split('/')[2];
+      html = 'pushed to ' + get_link(get_repo_url(entry)+'/tree/'+entry.payload.ref, entry.payload.ref) + ' at ' + get_repo_link(entry);
+    } else if (entry.type === 'WatchEvent' ) {
+      html = 'started watching ' + get_repo_link(entry);
+    }
+    entries.push({
+      name: "github",
+      date: new Date(entry.created_at),
+      html: html,
+      url: "https://github.com/etano"
+    });
   });
-  if (LSShown >= LSIter) {
-    LSShown = LSShown - LSIter;
-  };
+  return entries;
 };
 
-(function() {
-  LSInit = 1;
-  LSIter = 5;
-  loadLifeStream(1000);
-  LSShown = LSInit;
-})();
+/**
+ * Add links to the twitter feed.
+ * Hashes, @ and regular links are supported.
+ * @private
+ * @param {String} tweet A string of a tweet
+ * @return {String} A linkified tweet
+ */
+var linkify = function(tweet) {
+  var link = function(t) {
+    return t.replace(
+      /([a-z]+:\/\/)([-A-Z0-9+&@#\/%?=~_|(\)!:,.;]*[-A-Z0-9+&@#\/%=~_|(\)])/ig,
+      function(m, m1, m2) {
+        var a = document.createElement("a");
+        a.setAttribute("href", m);
+        a.textContent = ( m2.length > 35 ) ? m2.substr( 0, 34 ) + '...' : m2;
+        return a.outerHTML;
+      }
+    );
+  },
+  at = function( t ) {
+    return t.replace(
+      /(^|[^\w]+)\@([a-zA-Z0-9_]{1,15})/g,
+      function(m, m1, m2) {
+        var a = document.createElement("a");
+        a.setAttribute("href", "https://twitter.com/" + m2);
+        a.textContent = "@" + m2;
+        return m1 + a.outerHTML;
+      }
+    );
+  },
+  hash = function( t ) {
+    return t.replace(
+      /<a.*?<\/a>|(^|\r?\n|\r|\n|)(#|\$)([a-zA-Z0-9ÅåÄäÖöØøÆæÉéÈèÜüÊêÛûÎî_]+)(\r?\n|\r|\n||$)/g,
+      function( m, m1, m2, m3, m4 ) {
+        if (typeof m3 == "undefined") return m;
+        var elem = "";
+        if (m2 == "#") {
+            a = document.createElement("a");
+            a.setAttribute("href", "https://twitter.com/hashtag/" + m3 + "?src=hash");
+            a.textContent = "#" + m3;
+            elem = a.outerHTML;
+        } else if (m2 == "$") {
+            a = document.createElement("a");
+            a.setAttribute("href", "https://twitter.com/search?q=%24" + m3 + "&src=hash");
+            a.textContent = "#" + m3;
+            elem = a.outerHTML;
+        }
+        return (m1 + elem + m4);
+      }
+    );
+  };
+  return hash(at(link(tweet)));
+}
 
+var parse_twitter = function(res) {
+  var entries = [];
+  res.tweets.forEach(function(entry) {
+    entries.push({
+      name: "twitter",
+      date: new Date(entry.createdAt * 1000),
+      html: "tweeted "+linkify(entry.text),
+      url: "https://twitter.com/ethanwbrown/status/" + entry.id
+    });
+  });
+  return entries;
+};
 
+var feeds = [{
+  name: 'github',
+  url: 'https://api.github.com/users/etano/events?page=1&per_page=10',
+  parser: parse_github
+},{
+  name: 'pocket',
+  url: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22http%3A%2F%2Fwww.getpocket.com%2Fusers%2Fefang%2Ffeed%2Fall%2F%22&format=json&diagnostics=true&callback=',
+  parser: parse_pocket
+},{
+  name: 'twitter',
+  url: 'https://twittery.herokuapp.com/ethanwbrown',
+  parser: parse_twitter
+}];
+
+var one_week_ago = new Date()
+one_week_ago.setDate(one_week_ago.getDate() - 7);
+var all_entries = [];
+feeds.forEach(function(feed) {
+  get_entries(feed, function(entries) {
+    entries.forEach(function(entry) { all_entries.push(entry); });
+    all_entries.sort(function(a, b) { return b.date - a.date; });
+
+    var ul = document.getElementById("lifestream");
+    while (ul.firstChild)
+      ul.removeChild(ul.firstChild);
+
+    for(var i=0; i<all_entries.length; i++) {
+      if (all_entries[i].date > one_week_ago) {
+        var date = document.createElement("span");
+        date.textContent = timeago().format(all_entries[i].date);
+        date.setAttribute("id", "date");
+
+        var source = document.createElement("span");
+        var a = document.createElement("a");
+        a.textContent = all_entries[i].name;
+        a.setAttribute("href", all_entries[i].url);
+        source.appendChild(a);
+        source.setAttribute("id", "source");
+
+        var html = document.createElement("span");
+        html.innerHTML = all_entries[i].html;
+        html.setAttribute("id", "html");
+
+        var li = document.createElement("li");
+        li.appendChild(html);
+        li.appendChild(source);
+        li.appendChild(date);
+        ul.appendChild(li);
+      }
+    }
+  });
+});
