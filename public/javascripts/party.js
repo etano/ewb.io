@@ -29,4 +29,5 @@ function party(event) {
   }, 500);
 }
 
-window.onscroll = party;
+document.addEventListener("touchmove", party, false);
+document.addEventListener("scroll", party, false);
