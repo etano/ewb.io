@@ -5,7 +5,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0 20px;
+        padding: 0;
+        font-size: 14px;
+        line-height: 24px;
+        color: #999;
+        background: #fff;
+        font-family: Courier, serif;
+      }
+      a:link, a:visited, a:active {
+        color: #F87572;
+        text-decoration: none;
+      }
+      a:hover { text-decoration: underline; }
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      #header {
+        padding: 40px 0 30px 0;
+        width: 100%;
+        display: table;
+      }
+      #name { float: left; }
+      #subtext { padding: 10px 0; }
+      ul#nav li {
+        padding: 0 10px 0 0;
+        float: left;
+      }
+      ul, li {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul#lifestream li { padding: 10px 0; }
+      ul#lifestream li:hover { color: #333; }
+      ul#lifestream li span { padding: 0 20px 0 0; }
+    </style>
   </head>
   <body onmousemove="party(event)">
     <div id="header">
@@ -20,8 +58,8 @@
     </div>
     <div id="subtext">This past week I...</div>
     <ul id="lifestream"></ul>
-    <script src="/javascripts/party.js" type="text/javascript"></script>
+    <script src="/javascripts/party.min.js" type="text/javascript"></script>
     <script src="/javascripts/timeago.min.js" type="text/javascript"></script>
-    <script src="/javascripts/lifestream.js" type="text/javascript"></script>
+    <script src="/javascripts/lifestream.min.js" type="text/javascript"></script>
   </body>
 </html>
