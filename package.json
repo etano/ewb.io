@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "express": "^4.15.4"
+        "express": "^4.15.4",
+        "universal-analytics": "^0.4.15"
     }
 }
