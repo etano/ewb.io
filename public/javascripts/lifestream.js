@@ -46,8 +46,6 @@ function get_repo_link(entry) {
 var parse_github = function(res) {
   var entries = [];
   res.forEach(function(entry) {
-    console.log("hi");
-    console.log(entry);
     var html = ""
     if (entry.type === 'CommitCommentEvent' ) {
       html = 'commented on ' + get_repo_link(entry);
