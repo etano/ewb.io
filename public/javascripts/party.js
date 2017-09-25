@@ -21,10 +21,12 @@ function cycle(elements, colors) {
   cycle_u += du;
 }
 
-function party(e) {
+function party(event) {
   var links = document.getElementsByTagName("a");
   cycle(links, [{r: 248, g: 117, b: 114}, {r: 20, g: 126, b: 204}, {r: 253, g: 255, b: 25}]);
   setTimeout(function() {
     cycle(links, [{r: 51, g: 51, b: 51}, {r: 51, g: 51, b: 51}, {r: 51, g: 51, b: 51}]);
-  }, 50);
+  }, 500);
 }
+
+window.onscroll = party;
