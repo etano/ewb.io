@@ -1,11 +1,13 @@
 var ua = require("universal-analytics");
 var express = require('express');
 var path = require('path');
+
 var app = module.exports = express();
+var visitor = ua("UA-97838688-1");
 
 app.use(express.static(path.join(__dirname, '/public')));
-app.use(ua.middleware("UA-97838688-1"));
 app.get('/', (req, res) => {
+   visitor.pageview(req.url).send();
    res.render('index.html');
 });
 if(!module.parent) {
