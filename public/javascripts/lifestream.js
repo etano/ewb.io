@@ -149,7 +149,7 @@ var parse_twitter = function(res) {
 
 var feeds = [{
   name: 'github',
-  url: 'https://api.github.com/users/etano/events?page=1&per_page=10',
+  url: 'https://api.github.com/users/etano/events?page=1&per_page=300', // Max is 300, but should satify 1 week requirement
   parser: parse_github
 },{
   name: 'pocket',
