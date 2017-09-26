@@ -30,5 +30,6 @@ function party(event) {
 }
 
 window.onscroll = party;
+document.getElementsByTagName("BODY")[0].addEventListener("mousemove", party, false);
 document.addEventListener("touchmove", party, false);
 document.addEventListener("scroll", party, false);
