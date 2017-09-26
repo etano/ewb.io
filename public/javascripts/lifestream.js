@@ -1,7 +1,7 @@
 function call_rest(url, callback) {
   var xhttp = new XMLHttpRequest();
   xhttp.addEventListener('load', callback);
-  xhttp.addEventListener('error', () => console.log("Request to "+url+" failed"));
+  xhttp.addEventListener('error', function() { console.log("Request to "+url+" failed") });
   xhttp.open("GET", url, true);
   xhttp.send();
 }
@@ -12,27 +12,24 @@ function get_entries(feed, callback) {
   });
 }
 
-var parse_pocket = function(res) {
-  var entries = [];
-  res.query.results.rss.channel.item.forEach(function(entry) {
-    var a = document.createElement("a");
-    a.setAttribute("href", entry.link);
-    a.textContent = entry.title;
-    entries.push({
-      name: "pocket",
-      date: new Date(entry.pubDate),
-      html: "read "+a.outerHTML,
-      url: "https://getpocket.com/@efang"
-    });
-  });
-  return entries;
-}
-
 function get_link(href, text) {
   a = document.createElement("a");
   a.setAttribute("href", href);
   a.textContent = text;
   return a.outerHTML;
+}
+
+var parse_pocket = function(res) {
+  var entries = [];
+  res.query.results.rss.channel.item.forEach(function(entry) {
+    entries.push({
+      name: "pocket",
+      date: new Date(entry.pubDate),
+      html: "read "+get_link(entry.link, entry.title),
+      url: "https://getpocket.com/@efang"
+    });
+  });
+  return entries;
 }
 
 function get_repo_url(entry) {
@@ -107,10 +104,7 @@ var linkify = function(tweet) {
     return t.replace(
       /([a-z]+:\/\/)([-A-Z0-9+&@#\/%?=~_|(\)!:,.;]*[-A-Z0-9+&@#\/%=~_|(\)])/ig,
       function(m, m1, m2) {
-        var a = document.createElement("a");
-        a.setAttribute("href", m);
-        a.textContent = ( m2.length > 35 ) ? m2.substr( 0, 34 ) + '...' : m2;
-        return a.outerHTML;
+        return get_link(m, ( m2.length > 35 ) ? m2.substr( 0, 34 ) + '...' : m2);
       }
     );
   },
@@ -118,10 +112,7 @@ var linkify = function(tweet) {
     return t.replace(
       /(^|[^\w]+)\@([a-zA-Z0-9_]{1,15})/g,
       function(m, m1, m2) {
-        var a = document.createElement("a");
-        a.setAttribute("href", "https://twitter.com/" + m2);
-        a.textContent = "@" + m2;
-        return m1 + a.outerHTML;
+        return m1 + get_link("https://twitter.com/" + m2, "@" + m2);
       }
     );
   },
@@ -132,15 +123,9 @@ var linkify = function(tweet) {
         if (typeof m3 == "undefined") return m;
         var elem = "";
         if (m2 == "#") {
-            a = document.createElement("a");
-            a.setAttribute("href", "https://twitter.com/hashtag/" + m3 + "?src=hash");
-            a.textContent = "#" + m3;
-            elem = a.outerHTML;
+            elem = get_link("https://twitter.com/hashtag/" + m3 + "?src=hash", "#" + m3);
         } else if (m2 == "$") {
-            a = document.createElement("a");
-            a.setAttribute("href", "https://twitter.com/search?q=%24" + m3 + "&src=hash");
-            a.textContent = "#" + m3;
-            elem = a.outerHTML;
+            elem = get_link("https://twitter.com/search?q=%24" + m3 + "&src=hash", "#" + m3);
         }
         return (m1 + elem + m4);
       }
@@ -168,7 +153,7 @@ var feeds = [{
   parser: parse_github
 },{
   name: 'pocket',
-  url: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22http%3A%2F%2Fwww.getpocket.com%2Fusers%2Fefang%2Ffeed%2Fall%2F%22&format=json&diagnostics=true&callback=',
+  url: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22http%3A%2F%2Fwww.getpocket.com%2Fusers%2Fefang%2Ffeed%2Fall%2F%22&format=json&callback=',
   parser: parse_pocket
 },{
   name: 'twitter',
