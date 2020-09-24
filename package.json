@@ -1,8 +1,0 @@
-{
-    "name": "ewb.io",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-        "express": "^4.15.4"
-    }
-}
