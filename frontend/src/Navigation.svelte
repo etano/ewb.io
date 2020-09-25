@@ -1,3 +1,9 @@
+<script>
+    import Fa from 'svelte-fa'
+    import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
+    import { faGithub, faLinkedin, faTwitter, faKeybase, faInstagram } from '@fortawesome/free-brands-svg-icons'
+</script>
+
 <style>
     #header {
         position: absolute;
@@ -24,6 +30,7 @@
         text-decoration: none;
     }
     a:hover {
+        color: #D6668C;
         text-decoration: underline;
     }
     ul, li {
@@ -41,10 +48,11 @@
     <div id="name">Ethan W. Brown</div>
     <div id="divider">::</div>
     <ul id="nav">
-        <li><a href="https://github.com/etano">github</a></li>
-        <li><a href="https://www.linkedin.com/pub/ethan-brown/45/a09/435">linkedin</a></li>
-        <li><a href="https://scholar.google.ch/citations?user=sXEThvMAAAAJ&hl=en">scholar</a></li>
-        <li><a href="https://twitter.com/ethanwbrown">twitter</a></li>
-        <li><a href="https://keybase.io/ebrown">keybase</a></li>
+        <li><a href="https://github.com/etano"><Fa icon={faGithub}/></a></li>
+        <li><a href="https://www.linkedin.com/pub/ethan-brown/45/a09/435"><Fa icon={faLinkedin}/></a></li>
+        <li><a href="https://scholar.google.ch/citations?user=sXEThvMAAAAJ&hl=en"><Fa icon={faGraduationCap}/></a></li>
+        <li><a href="https://twitter.com/ethanwbrown"><Fa icon={faTwitter}/></a></li>
+        <li><a href="https://keybase.io/ebrown"><Fa icon={faKeybase}/></a></li>
+        <li><a href="https://instagram.com/efangs"><Fa icon={faInstagram}/></a></li>
     </ul>
 </div>
