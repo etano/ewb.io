@@ -8,7 +8,7 @@
     #header {
         position: absolute;
         left: 0px;
-        top: 0px;
+        bottom: 0px;
         margin: 20px;
         padding: 10px 0 10px 10px;
         display: flex;
