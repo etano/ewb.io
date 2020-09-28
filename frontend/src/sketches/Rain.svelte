@@ -2,7 +2,7 @@
     import P5Canvas from '../P5Canvas.svelte'
     import { colors, randomChoice } from '../utils.js'
 
-    const dropDensity = 1
+    const dropDensity = 0.5
 
     let drops = []
 
