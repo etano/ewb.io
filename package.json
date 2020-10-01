@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv docs",
+    "start": "sirv public",
     "deploy": "ssh ewb.io 'cd /var/www/ewb.io/frontend && git pull && npm install && npm run build && service nginx restart'"
   },
   "devDependencies": {
