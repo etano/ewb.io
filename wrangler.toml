@@ -1,0 +1,10 @@
+name = "ewb-io"
+type = "javascript"
+account_id = "864ac90bca0276390f97fdeb78ebc985"
+workers_dev = true
+route = ""
+zone_id = ""
+
+[site]
+bucket = "./public"
+entry-point = "workers-site"
