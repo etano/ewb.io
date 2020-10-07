@@ -2,7 +2,7 @@ name = "ewb-io"
 type = "javascript"
 account_id = "864ac90bca0276390f97fdeb78ebc985"
 workers_dev = false
-route = "ewb.io/*"
+route = "*ewb.io/*"
 zone_id = "58b01e3e4fd07a53251189187fd78d60"
 
 [site]
