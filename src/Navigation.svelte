@@ -44,15 +44,15 @@
     }
 </style>
 
-<div id="header">
-    <div id="name">Ethan W. Brown</div>
+<div id="header" class="h-card">
+    <div id="name" class="p-name">Ethan W. Brown</div>
     <div id="divider">::</div>
     <ul id="nav">
-        <li><a href="https://github.com/etano"><Fa icon={faGithub}/></a></li>
-        <li><a href="https://www.linkedin.com/pub/ethan-brown/45/a09/435"><Fa icon={faLinkedin}/></a></li>
-        <li><a href="https://scholar.google.ch/citations?user=sXEThvMAAAAJ&hl=en"><Fa icon={faGraduationCap}/></a></li>
-        <li><a href="https://twitter.com/ethanwbrown"><Fa icon={faTwitter}/></a></li>
-        <li><a href="https://keybase.io/ebrown"><Fa icon={faKeybase}/></a></li>
-        <li><a href="https://instagram.com/efangs"><Fa icon={faInstagram}/></a></li>
+        <li><a href="https://github.com/etano" rel="me" class="u-url"><Fa icon={faGithub}/></a></li>
+        <li><a href="https://www.linkedin.com/pub/ethan-brown/45/a09/435" rel="me" class="u-url"><Fa icon={faLinkedin}/></a></li>
+        <li><a href="https://scholar.google.ch/citations?user=sXEThvMAAAAJ&hl=en" rel="me" class="u-url"><Fa icon={faGraduationCap}/></a></li>
+        <li><a href="https://twitter.com/ethanwbrown" rel="me" class="u-url"><Fa icon={faTwitter}/></a></li>
+        <li><a href="https://keybase.io/ebrown" rel="me" class="u-url"><Fa icon={faKeybase}/></a></li>
+        <li><a href="https://instagram.com/efangs" rel="me" class="u-url"><Fa icon={faInstagram}/></a></li>
     </ul>
 </div>
