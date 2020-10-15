@@ -1,11 +1,12 @@
 <script>
     import { onMount } from "svelte"
-    import p5 from 'p5'
 
     export let id
     export let sketch
 
-    onMount(() => {
+    onMount(async () => {
+        const module = await import('p5')
+        let p5 = module.default
         let p5sketch = new p5(sketch, id)
     });
 </script>
