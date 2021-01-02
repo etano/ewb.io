@@ -1,7 +1,7 @@
 <script>
     import Fa from 'svelte-fa'
     import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
-    import { faGithub, faLinkedin, faTwitter, faKeybase, faInstagram } from '@fortawesome/free-brands-svg-icons'
+    import { faGithub, faLinkedin, faTwitter, faKeybase, faInstagram, faMastodon } from '@fortawesome/free-brands-svg-icons'
 </script>
 
 <style>
