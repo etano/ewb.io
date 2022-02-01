@@ -54,6 +54,5 @@
         <li><a href="https://twitter.com/ethanwbrown" rel="me" class="u-url"><Fa icon={faTwitter}/></a></li>
         <li><a href="https://keybase.io/ebrown" rel="me" class="u-url"><Fa icon={faKeybase}/></a></li>
         <li><a href="https://instagram.com/efangs" rel="me" class="u-url"><Fa icon={faInstagram}/></a></li>
-        <li><a href="https://social.ewb.io/@ewb" rel="me" class="u-url"><Fa icon={faMastodon}/></a></li>
     </ul>
 </div>
