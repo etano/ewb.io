@@ -1,5 +1,5 @@
 name = "ewb-io"
-type = "javascript"
+type = "webpack"
 account_id = "864ac90bca0276390f97fdeb78ebc985"
 workers_dev = true
 
