@@ -1,7 +1,7 @@
 <script>
     import Fa from 'svelte-fa'
     import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
-    import { faGithub, faLinkedin, faTwitter, faKeybase, faInstagram, faMastodon } from '@fortawesome/free-brands-svg-icons'
+    import { faGithub, faLinkedin, faKeybase, faBluesky } from '@fortawesome/free-brands-svg-icons'
 </script>
 
 <style>
@@ -51,9 +51,7 @@
         <li><a href="https://github.com/etano" rel="me" class="u-url"><Fa icon={faGithub}/></a></li>
         <li><a href="https://www.linkedin.com/in/ethanwbrown" rel="me" class="u-url"><Fa icon={faLinkedin}/></a></li>
         <li><a href="https://scholar.google.ch/citations?user=sXEThvMAAAAJ&hl=en" rel="me" class="u-url"><Fa icon={faGraduationCap}/></a></li>
-        <li><a rel="me" href="https://mas.to/@ewb" class="u-url"><Fa icon={faMastodon}/></a></li>
-        <li><a href="https://twitter.com/ethanwbrown" rel="me" class="u-url"><Fa icon={faTwitter}/></a></li>
+        <li><a href="https://bsky.app/profile/ewb.io" rel="me" class="u-url"><Fa icon={faBluesky}/></a></li>
         <li><a href="https://keybase.io/ebrown" rel="me" class="u-url"><Fa icon={faKeybase}/></a></li>
-        <li><a href="https://instagram.com/efangs" rel="me" class="u-url"><Fa icon={faInstagram}/></a></li>
     </ul>
 </div>
