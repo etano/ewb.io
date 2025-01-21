@@ -36,6 +36,6 @@
     "polka": "next",
     "sirv": "^1.0.0",
     "sirv-cli": "^1.0.0",
-    "wrangler": "^0.0.4"
+    "wrangler": "^3.0.0"
   }
 }
