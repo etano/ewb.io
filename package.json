@@ -14,7 +14,7 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
-    "@cloudflare/wrangler": "^1.11.0",
+    "@cloudflare/wrangler": "^3.103.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@rollup/plugin-babel": "^5.0.0",
@@ -36,6 +36,6 @@
     "polka": "next",
     "sirv": "^1.0.0",
     "sirv-cli": "^1.0.0",
-    "wrangler": "^3.0.0"
+    "wrangler": "^3.103.2"
   }
 }
