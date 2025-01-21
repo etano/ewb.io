@@ -8,5 +8,5 @@ bucket = "__sapper__/export"
 entry-point = "workers-site"
 
 [env.production]
-route = "*ewb.io/*"
+routes = ["*ewb.io/*", "ewb.io/*"]
 zone_id = "58b01e3e4fd07a53251189187fd78d60"
